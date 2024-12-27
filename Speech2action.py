@@ -7,6 +7,7 @@ from utils.get_audio_instance import read_audio
 from utils.get_prompt import generate_iot_prompt
 from utils.IoT_task import *
 from configs import parse_arguments
+import re
 
 # Bỏ qua các cảnh báo không mong muốn
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -36,8 +37,9 @@ def speech2action(path_file,speech2text_model):
         set_task = tasks.split(',')
 
         for action in set_task:
+            action = ''.join(re.findall(r'\d', action.strip()))
             IoT_task_call(action=action)
-            
+
     except CouldntDecodeError:
         print(f"Could not decode file: {path_file}")
     except Exception as e:
