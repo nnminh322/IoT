@@ -1,4 +1,5 @@
 ffmpeg-python
+tiktoken
 # Lưu ý: Đảm bảo cài đặt ffmpeg trên hệ thống của bạn bằng lệnh sau:
 # sudo apt update && sudo apt install ffmpeg
 pydub
