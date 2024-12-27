@@ -19,7 +19,7 @@ def question_answering():
     pass
 
 
-def action(task):
+def IoT_task_call(task):
     if task == "Bật đèn":
         turn_on_light()
     elif task == "Tắt đèn":
