@@ -20,6 +20,7 @@ def speech2action(path_file):
         # Load model và đọc file audio
         speech2text_model = get_s2t_model(name=args.name)
         audio_instance = read_audio(path=path_file)
+        print(f"path: {path_file}")
 
         # Chuyển âm thanh thành text
         text = get_text(speech2text_model, audio_instance)
