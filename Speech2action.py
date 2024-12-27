@@ -27,7 +27,7 @@ def main():
     dir_audio = os.listdir(root_data_path)
 
     for audio_instance_name in dir_audio:
-        audio_instance_path = root_data_path + audio_instance_name
+        audio_instance_path = root_data_path + "/" + audio_instance_name
         speech2action(audio_instance_path)
 
 
