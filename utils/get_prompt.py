@@ -1,12 +1,12 @@
 # Danh sách các nhiệm vụ IoT
 options = [
-    "Bật đèn", 
-    "Tắt đèn", 
-    "Kiểm tra trạng thái thiết bị", 
-    "Chơi nhạc", 
-    "Tăng âm lượng", 
-    "Giảm âm lượng", 
-    "Hỏi đáp"
+    "1. Bật đèn", 
+    "2. Tắt đèn", 
+    "3. Kiểm tra trạng thái thiết bị", 
+    "4. Chơi nhạc", 
+    "5. Tăng âm lượng", 
+    "6. Giảm âm lượng", 
+    "7. Hỏi đáp"
 ]
 
 
@@ -26,7 +26,6 @@ def generate_iot_prompt(text, options=options):
     # Chuyển danh sách nhiệm vụ thành dạng văn bản với đánh số
     formatted_options = '\n'.join([f"{i+1}. {option}" for i, option in enumerate(options)])
 
-    
     # Tạo prompt
     prompt = f"""
     Dưới đây là một đoạn văn bản. Bạn hãy phân loại đoạn văn bản này vào một trong các nhiệm vụ IoT sau: 
@@ -36,8 +35,9 @@ def generate_iot_prompt(text, options=options):
     Đoạn văn bản:
     "{text}"
 
-    Dựa trên nội dung của đoạn văn bản, vui lòng trả lời nhiệm vụ IoT phù hợp nhất từ các lựa chọn trên. 
-    Chỉ trả lời một trong các nhiệm vụ đã được liệt kê, không thêm bất kỳ văn bản nào ngoài danh sách nhiệm vụ.
+    Dựa trên nội dung của đoạn văn bản, vui lòng trả lời nhiệm vụ IoT phù hợp nhất từ các lựa chọn trên.
+    Nếu có nhiều nhiệm vụ phù hợp, hãy liệt kê tất cả, cách nhau bởi dấu xuống dòng (\n).
+    Chỉ trả lời bằng số thứ tự tương ứng của nhiệm vụ, không thêm bất kỳ văn bản nào ngoài danh sách nhiệm vụ.
     """
     
     return prompt

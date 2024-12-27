@@ -29,7 +29,8 @@ def speech2action(path_file):
         # Sinh prompt và thực hiện action
         prompt = generate_iot_prompt(text=text)
         task = api_call(prompt)
-        IoT_task_call(task=task)
+        print(task)
+        # IoT_task_call(task=task)
     except CouldntDecodeError:
         print(f"Could not decode file: {path_file}")
     except Exception as e:
