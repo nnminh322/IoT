@@ -15,10 +15,10 @@ warnings.filterwarnings("ignore", category=UserWarning)
 args = parse_arguments()
 
 
-def speech2action(path_file):
+def speech2action(path_file,speech2text_model):
     try:
         # Load model và đọc file audio
-        speech2text_model = get_s2t_model(name=args.name)
+        print('-'*50)
         audio_instance = read_audio(path=path_file)
         print(f"path: {path_file}")
 
@@ -28,9 +28,15 @@ def speech2action(path_file):
 
         # Sinh prompt và thực hiện action
         prompt = generate_iot_prompt(text=text)
-        task = api_call(prompt)
-        print(task)
-        # IoT_task_call(task=task)
+        print(f"prompt: {prompt}")
+
+        tasks = api_call(prompt)
+
+        print(f"task: {task}")
+        set_task = tasks.split(',')
+        for task in set_task:
+
+            IoT_task_call(task=task)
     except CouldntDecodeError:
         print(f"Could not decode file: {path_file}")
     except Exception as e:
@@ -41,6 +47,8 @@ def speech2action(path_file):
 def main():
     root_data_path = "./data_demo"
     dir_audio = os.listdir(root_data_path)
+    speech2text_model = get_s2t_model(name=args.name)
+
 
     for audio_instance_name in dir_audio:
         audio_instance_path = os.path.join(root_data_path, audio_instance_name)
@@ -51,7 +59,7 @@ def main():
             continue
 
         # Xử lý file
-        speech2action(audio_instance_path)
+        speech2action(audio_instance_path,speech2text_model)
 
 
 if __name__ == "__main__":
