@@ -1,0 +1,7 @@
+ffmpeg-python==4.4.0
+# Lưu ý: Đảm bảo cài đặt ffmpeg trên hệ thống của bạn bằng lệnh sau:
+# sudo apt update && sudo apt install ffmpeg
+pydub
+transformers
+einops
+google-generativeai>=0.7.2
