@@ -1,11 +1,16 @@
 import os
+import warnings
+from pydub.exceptions import CouldntDecodeError
 from model.speech2text_model import *
 from model.llm_model import *
 from utils.get_audio_instance import read_audio
 from utils.get_prompt import generate_iot_prompt
 from utils.IoT_task import *
 from configs import parse_arguments
-from pydub.exceptions import CouldntDecodeError
+
+# Bỏ qua các cảnh báo không mong muốn
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
 
 args = parse_arguments()
 
@@ -18,6 +23,7 @@ def speech2action(path_file):
 
         # Chuyển âm thanh thành text
         text = get_text(speech2text_model, audio_instance)
+        print(f"text: {text}")
 
         # Sinh prompt và thực hiện action
         prompt = generate_iot_prompt(text=text)
@@ -38,7 +44,7 @@ def main():
         audio_instance_path = os.path.join(root_data_path, audio_instance_name)
 
         # Kiểm tra nếu file có định dạng hợp lệ
-        if not audio_instance_name.lower().endswith(('.mp3', '.m4a', '.wav', '.flac')):
+        if not audio_instance_name.lower().endswith((".mp3", ".m4a", ".wav", ".flac")):
             print(f"Skipping non-audio file: {audio_instance_name}")
             continue
 
