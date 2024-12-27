@@ -32,11 +32,12 @@ def speech2action(path_file,speech2text_model):
 
         tasks = api_call(prompt)
 
-        print(f"task: {task}")
+        print(f"tasks: {tasks}")
         set_task = tasks.split(',')
-        for task in set_task:
 
-            IoT_task_call(task=task)
+        for action in set_task:
+            IoT_task_call(action=action)
+            
     except CouldntDecodeError:
         print(f"Could not decode file: {path_file}")
     except Exception as e:

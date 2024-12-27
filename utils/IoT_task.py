@@ -36,9 +36,9 @@ task_map = {
     "7": question_answering  # "7" tương ứng với hàm question_answering
 }
 
-def IoT_task_call(task_char):
+def IoT_task_call(action):
     # Sử dụng dictionary để gọi hàm tương ứng với ký tự tác vụ
-    task_function = task_map.get(task_char)
+    task_function = task_map.get(action)
     
     if task_function:
         task_function()  # Gọi hàm tương ứng
