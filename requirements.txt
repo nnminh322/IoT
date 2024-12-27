@@ -1,4 +1,4 @@
-ffmpeg-python==4.4.0
+ffmpeg-python
 # Lưu ý: Đảm bảo cài đặt ffmpeg trên hệ thống của bạn bằng lệnh sau:
 # sudo apt update && sudo apt install ffmpeg
 pydub
