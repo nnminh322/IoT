@@ -3,7 +3,7 @@ import google.generativeai as genai
 import json
 import time
 from utils.get_prompt import generate_iot_prompt
-genai.configure(api_key = "AIzaSyBirlOrEJBDn9irZTST7LAISKfhRgaJy9o") # MAVEN only
+genai.configure(api_key = "AIzaSyBex58JRHCJ0lg1Jeu7td5ASgIcnHPv9nM") # MAVEN only
 
 
 # Generate content

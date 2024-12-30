@@ -39,8 +39,8 @@ def speech2action(path_file, speech2text_model):
         for action in set_task:
             action = "".join(re.findall(r"\d", action.strip()))
             prompt_param = get_prompt_param(text=text, task_iot=action)
-            # param = api_call(prompt_param)
-            print(prompt_param)
+            param = api_call(prompt_param)
+            print(param)
             # IoT_task_call(action=action)
 
     except CouldntDecodeError:
