@@ -4,7 +4,7 @@ from pydub.exceptions import CouldntDecodeError
 from model.speech2text_model import *
 from model.llm_model import *
 from utils.get_audio_instance import read_audio
-from utils.get_prompt import generate_iot_prompt
+from utils.get_prompt import generate_iot_prompt, get_prompt_param
 from utils.IoT_task import *
 from configs import parse_arguments
 import re
@@ -16,10 +16,10 @@ warnings.filterwarnings("ignore", category=UserWarning)
 args = parse_arguments()
 
 
-def speech2action(path_file,speech2text_model):
+def speech2action(path_file, speech2text_model):
     try:
         # Load model và đọc file audio
-        print('-'*50)
+        print("-" * 50)
         audio_instance = read_audio(path=path_file)
         print(f"path: {path_file}")
 
@@ -34,11 +34,14 @@ def speech2action(path_file,speech2text_model):
         tasks = api_call(prompt)
 
         print(f"tasks: {tasks}")
-        set_task = tasks.split(',')
+        set_task = tasks.split(",")
 
         for action in set_task:
-            action = ''.join(re.findall(r'\d', action.strip()))
-            IoT_task_call(action=action)
+            action = "".join(re.findall(r"\d", action.strip()))
+            prompt_param = get_prompt_param(text=text, task_iot=action)
+            param = api_call(prompt_param)
+            print(param)
+            # IoT_task_call(action=action)
 
     except CouldntDecodeError:
         print(f"Could not decode file: {path_file}")
@@ -52,7 +55,6 @@ def main():
     dir_audio = os.listdir(root_data_path)
     speech2text_model = get_s2t_model(name=args.name)
 
-
     for audio_instance_name in dir_audio:
         audio_instance_path = os.path.join(root_data_path, audio_instance_name)
 
@@ -62,7 +64,7 @@ def main():
             continue
 
         # Xử lý file
-        speech2action(audio_instance_path,speech2text_model)
+        speech2action(audio_instance_path, speech2text_model)
 
 
 if __name__ == "__main__":
