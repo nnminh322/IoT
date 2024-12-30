@@ -41,6 +41,7 @@ def api_call_param_task(input_prompt: str):
     while retry > 0:
         try:
             # Gọi API để tạo nội dung
+            time.sleep(1)
             response = model.generate_content(input_prompt)
             content = response.text
             param = content.split("\n")[1]

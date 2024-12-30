@@ -27,7 +27,8 @@ param = {
     },
     "3": {
         "nameSong": None,
-        "singer": None  # Tên bài hát
+        "singer": None,  # Tên bài hát
+        "volume": None,
     },
     "4": {
         "volumeAction": None,
