@@ -11,7 +11,7 @@ model = genai.GenerativeModel(model_name='gemini-1.5-flash-latest')
 
 
 
-def api_call(input_prompt: str):
+def api_call_classify_task(input_prompt: str):
     retry = 3
     while retry > 0:
         try:
@@ -31,6 +31,20 @@ def api_call(input_prompt: str):
             content = response.text
             content = content.split('\n')[0]
             return content
+        except:
+            retry -= 1
+    raise Exception("Error: Retried 3 times!")
+
+
+def api_call_param_task(input_prompt: str):
+    retry = 3
+    while retry > 0:
+        try:
+            # Gọi API để tạo nội dung
+            response = model.generate_content(input_prompt)
+            content = response.text
+            param = content.split("\n")[1]
+            return param
         except:
             retry -= 1
     raise Exception("Error: Retried 3 times!")
