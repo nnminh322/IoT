@@ -26,8 +26,10 @@ def api_call_classify_task(input_prompt: str):
             #     ]
             # )
             # content = completion.choices[0].message.content
+            time.sleep(2)
+
             response = model.generate_content(input_prompt)
-            time.sleep(1)
+            time.sleep(2)
             content = response.text
             content = content.split('\n')[0]
             return content
@@ -41,11 +43,13 @@ def api_call_param_task(input_prompt: str):
     while retry > 0:
         try:
             # Gọi API để tạo nội dung
-            time.sleep(1)
+            time.sleep(2)
             response = model.generate_content(input_prompt)
             content = response.text
             param = content.split("\n")[1]
             return param
+            time.sleep(2)
+        
         except:
             retry -= 1
     raise Exception("Error: Retried 3 times!")
